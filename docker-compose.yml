@@ -12,11 +12,26 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: backend_app
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:jayakanth@db:5432/Cyber
+    ports:
+      - "4000:4000"
+
+  frontend:
+    build: ./frontend
+    container_name: frontend_app
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+    ports:
+      - "3000:3000"
 
 volumes:
   db_data:
