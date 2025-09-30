@@ -1,41 +1,43 @@
+"use client"; // <-- ADD THIS LINE
+
 import { useState, useMemo } from 'react';
 import { Container, SimpleGrid, Box, Text } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { FloatingHeader } from '../components/FloatingHeader';
 import { JobCard } from '../components/JobCard';
-import { mockJobs } from '../src/app/data/mockjobs'; // Make sure this path is correct
+import { mockJobs, Job } from '../src/app/data/mockjobs'; // Corrected path
 import { JobFilter } from '../components/JobFilter';
+import { CreateJobModal } from '../components/CreateJobModal';
 
 export default function HomePage() {
-  // Filters state (This section is unchanged)
+  const [opened, { open, close }] = useDisclosure(false);
+  const [jobs, setJobs] = useState<Job[]>(mockJobs);
   const [searchTerm, setSearchTerm] = useState('');
   const [location, setLocation] = useState<string | null>(null);
   const [jobType, setJobType] = useState<string | null>(null);
   const [salaryRange, setSalaryRange] = useState<[number, number]>([0, 200000]);
 
+  const handleCreateJob = (newJobData: Omit<Job, 'id' | 'postedAgo'>) => {
+    const newJob: Job = {
+      ...newJobData,
+      id: `new-${jobs.length + 1}`,
+      postedAgo: 'Just now',
+    };
+    setJobs((currentJobs) => [...currentJobs, newJob]);
+  };
 
   const filteredJobs = useMemo(() => {
-    return mockJobs.filter((job) => {
-      if (searchTerm && !job.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-        return false;
-      }
-      if (location && job.location !== location) {
-        return false;
-      }
-      if (jobType && job.type !== jobType) {
-        return false;
-      }
-      const salaryNumber = parseInt(job.salary.replace(/[^\d]/g, ''), 10); // convert '12LPA' → 12
-    if (salaryNumber < salaryRange[0] || salaryNumber > salaryRange[1]) {
-      return false;
-    }
+    return jobs.filter((job) => {
+      if (searchTerm && !job.title.toLowerCase().includes(searchTerm.toLowerCase())) return false;
+      if (location && job.location !== location) return false;
+      if (jobType && job.type !== jobType) return false;
       return true;
     });
-  }, [searchTerm, location, jobType, salaryRange]); 
+  }, [searchTerm, location, jobType, jobs]);
 
   return (
     <Box bg="#F8FAFC" mih="100vh">
-      <FloatingHeader />
-
+      <FloatingHeader onCreateJobClick={open} />
       <JobFilter
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
@@ -46,27 +48,20 @@ export default function HomePage() {
         salaryRange={salaryRange}
         setSalaryRange={setSalaryRange}
       />
-
       <Container size="xl" py="xl">
-        {/* NEW: Conditional rendering based on filtered results */}
         {filteredJobs.length > 0 ? (
-          <SimpleGrid
-            cols={{ base: 1, sm: 2, md: 3, lg: 4 }}
-            spacing="xl"
-            verticalSpacing="xl"
-          >
-            {/* Renders the filtered list of jobs */}
+          <SimpleGrid cols={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing="xl" verticalSpacing="xl">
             {filteredJobs.map((job) => (
               <JobCard key={job.id} job={job} />
             ))}
           </SimpleGrid>
         ) : (
-          // This message is shown if no jobs match the filters
           <Text ta="center" c="dimmed" mt="xl">
-            No jobs found matching your criteria. Try adjusting your filters.
+            No jobs found matching your criteria.
           </Text>
         )}
       </Container>
+      <CreateJobModal opened={opened} onClose={close} onJobPublished={handleCreateJob} />
     </Box>
   );
 }

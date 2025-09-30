@@ -1,5 +1,7 @@
+/* FloatingHeader.module.css */
+
 .link {
-  display: inline-block; /* <-- make links stay inline */
+  display: inline-block;
   line-height: 1;
   padding: 8px 12px;
   border-radius: var(--mantine-radius-sm);
@@ -13,9 +15,12 @@
   background-color: #f3f4f6; /* Light gray on hover */
 }
 
-/* Hide links on smaller screens */
 .navGroup {
-  @media (max-width: 860px) {
+  /* Hide links on smaller screens */
+}
+
+@media (max-width: 860px) {
+  .navGroup {
     display: none;
   }
 }

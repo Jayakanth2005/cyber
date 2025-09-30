@@ -5,6 +5,7 @@ export interface Job {
   id: Key | null | undefined;
   logo: string;
   title: string;
+  companyName: string;
   experience: string;
   type: string;
   salary: string;
@@ -17,6 +18,7 @@ export const mockJobs: Job[] = [
     id: '1',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     title: 'Full Stack Developer',
+    companyName: 'Amazon',
     experience: '1-3 yr Exp',
     type: 'Full-time',
     salary: '12LPA',
@@ -27,6 +29,7 @@ export const mockJobs: Job[] = [
     id: '2',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png',
     title: 'Node Js Developer',
+    companyName: 'Tesla',
     experience: '1-3 yr Exp',
     type: 'Part-time',
     salary: '12LPA',
@@ -37,6 +40,7 @@ export const mockJobs: Job[] = [
     id: '3',
     logo: '/zoho.png',
     title: 'UX/UI Designer',
+    companyName: 'Zoho',
     experience: '1-3 yr Exp',
     type: 'Internship',
     salary: '12LPA',
@@ -47,6 +51,7 @@ export const mockJobs: Job[] = [
     id: '4',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     title: 'Full Stack Developer',
+    companyName: 'Amazon',
     experience: '1-3 yr Exp',
     type: 'Contract',
     salary: '12LPA',
@@ -57,6 +62,7 @@ export const mockJobs: Job[] = [
     id: '5',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png',
     title: 'Node Js Developer',
+    companyName: 'Tesla',
     experience: '1-3 yr Exp',
     type: 'Full-time',
     salary: '12LPA',
@@ -67,6 +73,7 @@ export const mockJobs: Job[] = [
     id: '6',
     logo: '/zoho.png',
     title: 'UX/UI Designer',
+    companyName: 'Zoho',
     experience: '1-3 yr Exp',
     type: 'Part-time',
     salary: '12LPA',
@@ -77,6 +84,7 @@ export const mockJobs: Job[] = [
     id: '7',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     title: 'Full Stack Developer',
+    companyName: 'Amazon',
     experience: '1-3 yr Exp',
     type: 'Internship',
     salary: '12LPA',
@@ -87,6 +95,7 @@ export const mockJobs: Job[] = [
     id: '8',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png',
     title: 'Node Js Developer',
+    companyName: 'Tesla',
     experience: '1-3 yr Exp',
     type: 'Full-time',
     salary: '12LPA',

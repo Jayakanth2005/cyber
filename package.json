@@ -23,5 +23,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@mantine/dates": "^8.3.2",
+    "dayjs": "^1.11.18"
+  }
 }
