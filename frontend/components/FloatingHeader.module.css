@@ -1,0 +1,21 @@
+.link {
+  display: inline-block; /* <-- make links stay inline */
+  line-height: 1;
+  padding: 8px 12px;
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: #374151; /* Gray text */
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+}
+
+.link:hover {
+  background-color: #f3f4f6; /* Light gray on hover */
+}
+
+/* Hide links on smaller screens */
+.navGroup {
+  @media (max-width: 860px) {
+    display: none;
+  }
+}
