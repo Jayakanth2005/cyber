@@ -69,7 +69,7 @@ export function CreateJobModal({ opened, onClose, onJobPublished }: CreateJobMod
         <Select 
           label="Location" 
           placeholder="Choose Location" 
-          data={['Chennai, India', 'Mumbai, India', 'Bengaluru, India', 'Remote']} 
+          data={['Chennai', 'Mumbai', 'Bengaluru', 'Remote']} 
           value={location} 
           onChange={setLocation} 
           required 
