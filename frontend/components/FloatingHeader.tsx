@@ -1,4 +1,6 @@
-import { Container, Group, Button, Flex, Image, Paper } from '@mantine/core';
+"use client";
+
+import { Container, Button, Flex, Image, Paper, Text } from '@mantine/core';
 import classes from './FloatingHeader.module.css';
 
 const links = ['Home', 'Find Jobs', 'Find Talents', 'About us', 'Testimonials'];
@@ -8,33 +10,58 @@ interface FloatingHeaderProps {
 }
 
 export function FloatingHeader({ onCreateJobClick }: FloatingHeaderProps) {
-  const items = links.map((link) => (
-    <a key={link} href="#" className={classes.link}>
-      {link}
-    </a>
-  ));
-
   return (
-    <Container size="xl" style={{ marginTop: 20 }}>
-      <Paper component="header" radius="xl" shadow="md" p="md" withBorder>
-        <Flex justify="space-between" align="center" style={{ height: 50 }}>
-          <Group align="center" gap="xl">
-            <Image src="/cyberminds.png" height={40} fit="contain" alt="Logo" />
-            <Group gap="lg" className={classes.navGroup} wrap="nowrap">
-              {items}
-            </Group>
-          </Group>
+    <Paper
+      component="header"
+      radius="xl"
+      shadow="lg"
+      p="md"
+      withBorder
+      style={{
+        position: 'sticky',
+        top: 20,
+        zIndex: 1000,
+        backdropFilter: 'blur(10px)',
+        backgroundColor: 'rgba(255, 255, 255, 0.85)',
+        margin: '0 auto',
+      }}
+    >
+      <Container size="xl">
+<Flex align="center" justify="space-between" wrap="nowrap" style={{ minWidth: 0 }}>
+  <Flex align="center" gap="lg" wrap="nowrap" style={{ flexGrow: 1, minWidth: 0 }}>
+    <Image src="/cyberminds.png" height={40} fit="contain" alt="Logo" />
+    <Flex gap="md" wrap="nowrap" style={{ flexShrink: 1 }}>
+      {links.map((link) => (
+        <Text
+          key={link}
+          className={classes.link}
+          component="a"
+          href="#"
+          fw={500}
+          c="dimmed"
+        >
+          {link}
+        </Text>
+      ))}
+    </Flex>
+  </Flex>
 
-          <Button
-            radius="lg"
-            size="sm"
-            style={{ background: 'linear-gradient(to right, #6D28D9, #9333EA)' }}
-            onClick={onCreateJobClick}
-          >
-            Create Jobs
-          </Button>
-        </Flex>
-      </Paper>
-    </Container>
+  <Button
+    radius="lg"
+    size="sm"
+    style={{
+      background: 'linear-gradient(to right, #8B5CF6, #A78BFA)',
+      color: '#fff',
+    }}
+    onClick={onCreateJobClick}
+  >
+    Create Jobs
+  </Button>
+</Flex>
+
+
+
+      </Container>
+    </Paper>
   );
 }
