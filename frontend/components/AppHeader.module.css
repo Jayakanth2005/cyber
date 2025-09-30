@@ -1,0 +1,19 @@
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.link {
+  display: block;
+  line-height: 1;
+  padding: 8px 12px;
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: #333;
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+}
+
+.link:hover {
+  background-color: #f1f3f5;
+}
