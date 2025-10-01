@@ -1,4 +1,4 @@
-// frontend/src/app/types.ts
+
 import { Key } from 'react';
 
 export interface Job {
@@ -11,7 +11,7 @@ export interface Job {
   salary: string;
   logo: string;
   postedAgo?: string;
-  description?: string; // <-- add this
-  responsibilities?: string; // <-- add this
+  description?: string; 
+  responsibilities?: string; 
   applicationDeadline?: string;
 }

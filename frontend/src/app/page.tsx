@@ -1,4 +1,4 @@
-"use client"; // <-- THE MOST IMPORTANT FIX IS THIS LINE
+"use client"; 
 
 import { useState, useMemo } from 'react';
 import { Container, SimpleGrid, Box, Text } from '@mantine/core';
