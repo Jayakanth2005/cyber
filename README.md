@@ -137,6 +137,11 @@ This will pull/build images and run containers.
 Backend will be available at: http://localhost:4000
 Frontend will be available at: http://localhost:3000
 ```
+## Backend API calling in Postman
+
+https://drive.google.com/file/d/1vABtaZKIQ6pv36cmW3A8FxXnZdhwKyQO/view?usp=sharing
+
+Use the link to view the video for Backend API calls
 
 ## Useful Links
 
