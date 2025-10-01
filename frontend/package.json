@@ -3,11 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start -p $PORT",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "format": "prettier --write ."
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "serve out"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -33,6 +31,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
+    "serve": "^14.2.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
