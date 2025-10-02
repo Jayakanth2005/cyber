@@ -123,6 +123,26 @@ yarn exec turbo link
 pnpm exec turbo link
 ```
 
+## Docker running commands
+This project is containerized in docker
+
+```
+docker-compose build
+Run this in the root directory
+
+docker-compose up
+This will start the containers
+
+This will pull/build images and run containers.
+Backend will be available at: http://localhost:4000
+Frontend will be available at: http://localhost:3000
+```
+## Backend API calling in Postman
+
+https://drive.google.com/file/d/1vABtaZKIQ6pv36cmW3A8FxXnZdhwKyQO/view?usp=sharing
+
+Use the link to view the video for Backend API calls
+
 ## Useful Links
 
 Learn more about the power of Turborepo:
