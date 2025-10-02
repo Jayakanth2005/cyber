@@ -143,6 +143,14 @@ https://drive.google.com/file/d/1vABtaZKIQ6pv36cmW3A8FxXnZdhwKyQO/view?usp=shari
 
 Use the link to view the video for Backend API calls
 
+
+## The Project is hosted in the below link in vercel
+
+```
+https://frontend-hk8qep6p6-jayakanths-projects.vercel.app/
+
+```
+
 ## Useful Links
 
 Learn more about the power of Turborepo:
