@@ -7,10 +7,8 @@ import {
   Button,
   Stack,
   List,
-  ThemeIcon,
 } from '@mantine/core';
-import { IconPointFilled } from '@tabler/icons-react';
-import type { Job } from '../src/app/data/mockjobs';
+import type { Job } from '../src/data/mockjobs';
 
 
 interface JobCardProps {
@@ -19,53 +17,112 @@ interface JobCardProps {
 
 export function JobCard({ job }: JobCardProps) {
   return (
-    <Card withBorder radius="md" p="lg">
-      <Stack>
-        <Group justify="space-between">
-          <Image src={job.logo} alt={job.title} h={40} w="auto" fit="contain" />
+    <Card 
+      withBorder 
+      radius="md" 
+      p="lg" 
+      style={{ 
+        height: '100%',
+        backgroundColor: '#ffffff',
+        border: '1px solid #e5e7eb'
+      }}
+    >
+      <Stack gap="md">
+        <Group justify="space-between" align="flex-start">
+          <div style={{ 
+            width: 48, 
+            height: 48, 
+            borderRadius: 8, 
+            backgroundColor: '#f3f4f6',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <Image 
+              src={job.logo} 
+              alt={job.companyName} 
+              h={32} 
+              w={32} 
+              fit="contain" 
+            />
+          </div>
           <Badge
             variant="light"
-            color="gray"
-            style={{ backgroundColor: '#E0E7FF', color: '#4F46E5', fontWeight: 500 }}
+            color="blue"
+            size="sm"
+            style={{ 
+              backgroundColor: '#eff6ff', 
+              color: '#1d4ed8',
+              fontWeight: 500,
+              border: 'none'
+            }}
           >
             {job.postedAgo}
           </Badge>
         </Group>
 
-        <Text fw={600} fz="lg" mt="sm">
-          {job.title}
-        </Text>
+        <div>
+          <Text fw={600} fz="lg" c="#111827" mb={4}>
+            {job.title}
+          </Text>
+          <Text fz="sm" c="#6b7280" mb={8}>
+            {job.companyName}
+          </Text>
+        </div>
 
-        <Group gap="sm">
-          <Text fz="sm" c="dimmed">
-            {job.experience}
-          </Text>
-          <Text fz="sm" c="dimmed"> • </Text>
-          <Text fz="sm" c="dimmed">
-            {job.type}
-          </Text>
-          <Text fz="sm" c="dimmed"> • </Text>
-          <Text fz="sm" c="dimmed">
-            {job.salary}
-          </Text>
-        </Group>
+        <div>
+          <Group gap="xs" mb={8}>
+            <Text fz="sm" c="#374151">
+              {job.experience}
+            </Text>
+            <Text fz="sm" c="#d1d5db">•</Text>
+            <Text fz="sm" c="#374151">
+              {job.type}
+            </Text>
+            <Text fz="sm" c="#d1d5db">•</Text>
+            <Text fz="sm" c="#374151">
+              {job.salary}
+            </Text>
+          </Group>
+          
+          <Group gap="xs">
+            <Text fz="sm" c="#6b7280">
+              📍 {job.location}
+            </Text>
+          </Group>
+        </div>
 
         <List
           spacing="xs"
           size="sm"
-          center
-          c="dimmed"
+          c="#6b7280"
           icon={
-            <ThemeIcon color="gray" size={16} radius="xl">
-              <IconPointFilled style={{ width: '70%', height: '70%' }} />
-            </ThemeIcon>
+            <div style={{ 
+              width: 4, 
+              height: 4, 
+              borderRadius: '50%', 
+              backgroundColor: '#9ca3af',
+              marginTop: 8
+            }} />
           }
         >
-          <List.Item>A user-friendly interface lets you browse stunning photos and videos</List.Item>
-          <List.Item>Filter destinations based on interests and travel style, and create personalized</List.Item>
+          <List.Item>Design user interfaces and optimize user experience</List.Item>
+          <List.Item>Collaborate with cross-functional teams and stakeholders</List.Item>
+          <List.Item>Create wireframes, prototypes, and design documentation</List.Item>
         </List>
 
-        <Button color="blue" fullWidth mt="md" radius="md">
+        <Button 
+          fullWidth 
+          mt="auto"
+          radius="md"
+          size="md"
+          style={{
+            backgroundColor: '#3b82f6',
+            '&:hover': {
+              backgroundColor: '#2563eb'
+            }
+          }}
+        >
           Apply Now
         </Button>
       </Stack>

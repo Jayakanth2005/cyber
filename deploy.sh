@@ -1,0 +1,52 @@
+#!/bin/bash
+
+echo "🚀 Job Application Deployment Guide"
+echo "=================================="
+
+echo "📋 Prerequisites:"
+echo "1. GitHub account"
+echo "2. Vercel account (for frontend)"
+echo "3. Railway account (for backend)"
+echo ""
+
+echo "🔧 Step 1: Prepare Repository"
+echo "git add ."
+echo "git commit -m 'Ready for deployment'"
+echo "git push origin main"
+echo ""
+
+echo "🎯 Step 2: Deploy Backend to Railway"
+echo "1. Go to https://railway.app"
+echo "2. Sign in with GitHub"
+echo "3. New Project → Deploy from GitHub repo"
+echo "4. Select your repository"
+echo "5. Choose 'backend' folder"
+echo "6. Add PostgreSQL database service"
+echo "7. Set environment variables:"
+echo "   - NODE_ENV=production"
+echo "   - CORS_ORIGIN=https://your-frontend-url.vercel.app"
+echo ""
+
+echo "🌐 Step 3: Deploy Frontend to Vercel"
+echo "1. Go to https://vercel.com"
+echo "2. Sign in with GitHub"
+echo "3. New Project → Import repository"
+echo "4. Root Directory: frontend"
+echo "5. Build Command: npm run build"
+echo "6. Output Directory: dist"
+echo "7. Set environment variable:"
+echo "   - VITE_API_URL=https://your-backend-url.railway.app"
+echo ""
+
+echo "✅ Step 4: Update CORS"
+echo "Update the CORS_ORIGIN in Railway with your Vercel URL"
+echo ""
+
+echo "🎉 Your app will be live at:"
+echo "Frontend: https://your-app.vercel.app"
+echo "Backend: https://your-backend.railway.app"
+echo ""
+
+echo "💰 Total Cost: FREE!"
+echo "- Vercel: Free tier (100GB bandwidth)"
+echo "- Railway: Free tier ($5 monthly credit)"

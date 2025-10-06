@@ -5,6 +5,16 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Enable CORS for frontend connection
+  app.enableCors({
+    origin: process.env.NODE_ENV === 'production' 
+      ? [process.env.CORS_ORIGIN, 'https://your-app.vercel.app'] 
+      : ['http://localhost:3000', 'http://localhost:5173'], // React dev servers
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  });
+
   // Global validation pipe
   app.useGlobalPipes(
     new ValidationPipe({ 

@@ -14,21 +14,26 @@ export class JobsService {
     return this.jobRepo.save(job);
   }
 
-  async findAll(filters: any, page = 1, limit = 10): Promise<{ data: Job[]; total: number }> {
+  async findAll(filters: any, page = 1, limit = 10): Promise<Job[]> {
     const query = this.jobRepo.createQueryBuilder('job');
 
-    if (filters.title) query.andWhere('job.title ILIKE :title', { title: `%${filters.title}%` });
-    if (filters.location) query.andWhere('job.location ILIKE :location', { location: `%${filters.location}%` });
-    if (filters.jobType) query.andWhere('job.jobType = :jobType', { jobType: filters.jobType });
-    if (filters.minSalary) query.andWhere('job.salaryRange >= :minSalary', { minSalary: filters.minSalary });
-    if (filters.maxSalary) query.andWhere('job.salaryRange <= :maxSalary', { maxSalary: filters.maxSalary });
+    if (filters.title) {
+      query.andWhere('(job.title ILIKE :title OR job.companyName ILIKE :title)', { title: `%${filters.title}%` });
+    }
+    if (filters.location) {
+      query.andWhere('job.location ILIKE :location', { location: `%${filters.location}%` });
+    }
+    if (filters.jobType) {
+      query.andWhere('job.jobType = :jobType', { jobType: filters.jobType });
+    }
 
-    const [data, total] = await query
-      .skip((page - 1) * limit)
-      .take(limit)
-      .getManyAndCount();
+    // Add ordering by creation date (newest first)
+    query.orderBy('job.createdAt', 'DESC');
 
-    return { data, total };
+    // Skip pagination for now to simplify
+    const data = await query.getMany();
+
+    return data;
   }
 
   async findOne(id: string): Promise<Job> {

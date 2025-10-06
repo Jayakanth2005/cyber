@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Modal, TextInput, Textarea, Button, Select, SimpleGrid, Group } from '@mantine/core';
-import { DatePickerInput } from '@mantine/dates';
-import type { Job } from '../src/app/types';
+import type { Job } from '../src/types';
 
 interface CreateJobModalProps {
   opened: boolean;
@@ -30,8 +29,8 @@ export function CreateJobModal({ opened, onClose, onJobPublished }: CreateJobMod
       location,
       type: jobType,
       salary,
-      logo: '/company-placeholder.png',
-      experience: '0-1 yr Exp',
+      logo: 'https://ui-avatars.com/api/?name=' + companyName + '&background=3b82f6&color=fff',
+      experience: '1-3 yr Exp',
       description,
       responsibilities: description,
       applicationDeadline: applicationDeadline ? applicationDeadline.toISOString() : '',
@@ -50,7 +49,20 @@ export function CreateJobModal({ opened, onClose, onJobPublished }: CreateJobMod
   };
 
   return (
-    <Modal opened={opened} onClose={onClose} title="Create Job Opening" size="lg" centered>
+    <Modal 
+      opened={opened} 
+      onClose={onClose} 
+      title="Create Job Opening" 
+      size="lg" 
+      centered
+      styles={{
+        title: {
+          fontSize: '1.25rem',
+          fontWeight: 600,
+          color: '#111827'
+        }
+      }}
+    >
       <SimpleGrid cols={2} spacing="md">
         <TextInput 
           label="Job Title" 
@@ -58,21 +70,35 @@ export function CreateJobModal({ opened, onClose, onJobPublished }: CreateJobMod
           value={title} 
           onChange={(e) => setTitle(e.currentTarget.value)} 
           required 
+          styles={{
+            label: { color: '#374151', fontWeight: 500, marginBottom: 8 },
+            input: { border: '1px solid #d1d5db', '&:focus': { borderColor: '#3b82f6' } }
+          }}
         />
-        <TextInput 
-          label="Company Name" 
-          placeholder="Your Company" 
+        <Select 
+          label="Company" 
+          placeholder="Amazon" 
+          data={['Amazon', 'Tesla', 'Google', 'Microsoft', 'Apple', 'Meta']} 
           value={companyName} 
-          onChange={(e) => setCompanyName(e.currentTarget.value)} 
+          onChange={(val) => setCompanyName(val || '')} 
           required 
+          searchable
+          styles={{
+            label: { color: '#374151', fontWeight: 500, marginBottom: 8 },
+            input: { border: '1px solid #d1d5db', '&:focus': { borderColor: '#3b82f6' } }
+          }}
         />
         <Select 
           label="Location" 
-          placeholder="Choose Location" 
-          data={['Chennai', 'Mumbai', 'Bengaluru', 'Remote']} 
+          placeholder="Chennai" 
+          data={['Chennai', 'Mumbai', 'Bangalore', 'Remote', 'Delhi', 'Hyderabad']} 
           value={location} 
           onChange={setLocation} 
           required 
+          styles={{
+            label: { color: '#374151', fontWeight: 500, marginBottom: 8 },
+            input: { border: '1px solid #d1d5db', '&:focus': { borderColor: '#3b82f6' } }
+          }}
         />
         <Select 
           label="Job Type" 
@@ -81,37 +107,70 @@ export function CreateJobModal({ opened, onClose, onJobPublished }: CreateJobMod
           value={jobType} 
           onChange={setJobType} 
           required 
+          styles={{
+            label: { color: '#374151', fontWeight: 500, marginBottom: 8 },
+            input: { border: '1px solid #d1d5db', '&:focus': { borderColor: '#3b82f6' } }
+          }}
         />
         <TextInput 
-          label="Salary" 
+          label="Salary Range" 
           placeholder="12LPA" 
           value={salary} 
           onChange={(e) => setSalary(e.currentTarget.value)} 
+          styles={{
+            label: { color: '#374151', fontWeight: 500, marginBottom: 8 },
+            input: { border: '1px solid #d1d5db', '&:focus': { borderColor: '#3b82f6' } }
+          }}
         />
-       <DatePickerInput
-  label="Application Deadline"
-  placeholder="Select a date"
-  value={applicationDeadline ? applicationDeadline.toISOString().substring(0,10) : null}
-  onChange={(val: string | null) =>
-    setApplicationDeadline(val ? new Date(val) : null)
-  }
-  minDate={new Date()}
-/>
-
+        <TextInput 
+          label="Application Deadline" 
+          placeholder="YYYY-MM-DD" 
+          value={applicationDeadline ? applicationDeadline.toISOString().split('T')[0] : ''} 
+          onChange={(e) => {
+            const value = e.currentTarget.value;
+            setApplicationDeadline(value ? new Date(value) : null);
+          }}
+          type="date"
+          styles={{
+            label: { color: '#374151', fontWeight: 500, marginBottom: 8 },
+            input: { border: '1px solid #d1d5db', '&:focus': { borderColor: '#3b82f6' } }
+          }}
+        />
       </SimpleGrid>
 
       <Textarea 
         mt="md" 
         label="Job Description" 
-        placeholder="Job details..." 
+        placeholder="Describe the role, responsibilities, and requirements..." 
         minRows={4} 
         value={description} 
         onChange={(e) => setDescription(e.currentTarget.value)} 
+        styles={{
+          label: { color: '#374151', fontWeight: 500, marginBottom: 8 },
+          input: { border: '1px solid #d1d5db', '&:focus': { borderColor: '#3b82f6' } }
+        }}
       />
 
       <Group justify="space-between" mt="xl">
-        <Button variant="outline" onClick={onClose}>Cancel</Button>
-        <Button onClick={handlePublish}>Publish</Button>
+        <Button 
+          variant="outline" 
+          onClick={onClose}
+          style={{
+            borderColor: '#d1d5db',
+            color: '#374151'
+          }}
+        >
+          Save Draft
+        </Button>
+        <Button 
+          onClick={handlePublish}
+          style={{
+            backgroundColor: '#3b82f6',
+            '&:hover': { backgroundColor: '#2563eb' }
+          }}
+        >
+          Publish
+        </Button>
       </Group>
     </Modal>
   );
