@@ -16,8 +16,8 @@ This Turborepo includes the following packages/apps:
 
 ### Apps and Packages
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
+- `docs`: a [Reactjs](https://nextjs.org/) app
+- `web`: another [Reactjs](https://nextjs.org/) app
 - `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
@@ -147,7 +147,7 @@ Use the link to view the video for Backend API calls
 ## The Project is hosted in the below link in vercel
 
 ```
-https://frontend-hk8qep6p6-jayakanths-projects.vercel.app/
+https://cyber-frontend-bmm84z65a-jayakanths-projects.vercel.app/
 
 ```
 
